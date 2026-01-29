@@ -3,15 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍭 Candy Dream Academy ULTRA</title>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <title>🍭 Candy Dream Academy ULTRA PREMIUM 💎</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300;400;500;600;700&family=Bubblegum+Sans&family=Righteous&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
+        :root {
+            --bg-primary: #FFE5F1;
+            --bg-secondary: #E0BBE4;
+            --bg-tertiary: #C1F7DC;
+            --bg-quaternary: #A5E7FF;
+            --bg-quinary: #FFD4B8;
+            --accent-main: #FF6B9D;
+            --accent-secondary: #C8A2E8;
+            --text-primary: #8B7AB8;
+        }
+        
         body { 
             font-family: 'Fredoka', sans-serif; 
-            background: linear-gradient(-45deg, #FFE5F1, #E0BBE4, #C1F7DC, #A5E7FF, #FFD4B8); 
+            background: linear-gradient(-45deg, var(--bg-primary), var(--bg-secondary), var(--bg-tertiary), var(--bg-quaternary), var(--bg-quinary)); 
             background-size: 400% 400%; 
             animation: gradientBG 15s ease infinite; 
             min-height: 100vh; 
@@ -19,6 +31,7 @@
             justify-content: center; 
             overflow-x: hidden;
             position: relative;
+            transition: background 0.5s ease;
         }
         
         @keyframes gradientBG { 
@@ -26,7 +39,7 @@
             50% { background-position: 100% 50%; } 
         }
         
-        /* Bulles flottantes ULTRA */
+        /* Bulles flottantes */
         .bubble { 
             position: fixed; 
             border-radius: 50%; 
@@ -50,7 +63,7 @@
             position: relative; 
         }
         
-        /* Effet Glassmorphism PREMIUM */
+        /* Glassmorphism PREMIUM */
         .glass { 
             background: rgba(255, 255, 255, 0.75); 
             backdrop-filter: blur(20px); 
@@ -112,13 +125,13 @@
             box-shadow: 0 5px 20px rgba(0,0,0,0.05);
         }
         input:focus { 
-            border-color: #FF6B9D; 
+            border-color: var(--accent-main); 
             box-shadow: 0 0 0 6px rgba(255, 107, 157, 0.1), 0 10px 30px rgba(255, 107, 157, 0.2);
             transform: translateY(-2px);
         }
         
         .btn-premium { 
-            background: linear-gradient(135deg, #FF6B9D, #FFB347); 
+            background: linear-gradient(135deg, var(--accent-main), #FFB347); 
             color: white; 
             border: none; 
             padding: 22px; 
@@ -141,12 +154,83 @@
         
         .btn-secondary { 
             background: white; 
-            color: #FF6B9D; 
-            border: 3px solid #FF6B9D; 
+            color: var(--accent-main); 
+            border: 3px solid var(--accent-main); 
             box-shadow: 0 8px 20px rgba(255, 107, 157, 0.2);
         }
         .btn-secondary:hover {
             background: rgba(255, 107, 157, 0.1);
+        }
+        
+        /* AVATAR SELECTOR PREMIUM */
+        .avatar-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .avatar-option {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 4px solid transparent;
+            background: linear-gradient(145deg, rgba(255,255,255,0.9), rgba(255,243,250,0.8));
+            font-size: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        .avatar-option:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.3);
+        }
+        
+        .avatar-option.selected {
+            border-color: var(--accent-main);
+            background: linear-gradient(135deg, #FFB3D9, #E0BBE4);
+            transform: scale(1.15);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.5);
+        }
+        
+        /* COLOR PICKER PREMIUM */
+        .color-picker-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 12px;
+            margin: 20px 0;
+        }
+        
+        .color-option {
+            width: 100%;
+            aspect-ratio: 1;
+            border-radius: 50%;
+            border: 4px solid white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+            position: relative;
+        }
+        
+        .color-option:hover {
+            transform: scale(1.15);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+        }
+        
+        .color-option.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            font-weight: 700;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.3);
         }
         
         /* Header Dashboard PREMIUM */
@@ -169,6 +253,11 @@
             box-shadow: 0 12px 30px rgba(255, 107, 157, 0.3); 
             border: 5px solid white;
             animation: bounce 3s infinite ease-in-out; 
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        .avatar-cupcake:hover {
+            transform: scale(1.1);
         }
         @keyframes bounce { 
             0%, 100% { transform: translateY(0) scale(1); } 
@@ -185,7 +274,76 @@
             border: 2px solid rgba(255, 255, 255, 0.8);
         }
         
-        /* Catégories ULTRA */
+        /* WIDGETS PREMIUM */
+        .widget-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .widget {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(255, 179, 217, 0.2);
+            border: 3px solid rgba(255, 255, 255, 0.9);
+            transition: all 0.3s ease;
+        }
+        
+        .widget:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.3);
+        }
+        
+        .widget-full {
+            grid-column: 1 / -1;
+        }
+        
+        .widget-title {
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--accent-secondary);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .widget-value {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--accent-main), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .widget-quote {
+            font-style: italic;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: rgba(200, 162, 232, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-main), var(--accent-secondary));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+            box-shadow: 0 0 10px rgba(255, 107, 157, 0.5);
+        }
+        
+        /* Catégories */
         .cat-container { 
             display: flex; 
             gap: 12px; 
@@ -213,7 +371,7 @@
             box-shadow: 0 12px 35px rgba(255, 107, 157, 0.4); 
         }
         
-        /* CARTE QUESTION ÉPAISSE PREMIUM */
+        /* CARTE QUESTION PREMIUM */
         .carte-question { 
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 243, 250, 0.9)); 
             backdrop-filter: blur(25px);
@@ -250,7 +408,7 @@
         .titre-voeu { 
             font-size: 2.2rem; 
             font-weight: 700; 
-            background: linear-gradient(135deg, #FF6B9D, #C8A2E8); 
+            background: linear-gradient(135deg, var(--accent-main), var(--accent-secondary)); 
             -webkit-background-clip: text; 
             -webkit-text-fill-color: transparent; 
             margin-bottom: 20px; 
@@ -268,7 +426,7 @@
             border: 3px solid white;
         }
         
-        /* Flèches navigation PREMIUM */
+        /* Navigation */
         .nav-container { 
             display: flex; 
             justify-content: center; 
@@ -292,7 +450,7 @@
             box-shadow: 0 15px 40px rgba(255, 179, 217, 0.4); 
         }
         
-        /* MODAL EXERCICE ULTRA */
+        /* MODAL EXERCICE - BULLE EN FORME DE NUAGE */
         .modal-overlay { 
             position: fixed; 
             top: 0; 
@@ -311,11 +469,11 @@
         .modal-overlay.actif { display: flex !important; }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
         
+        /* BULLE NUAGE PREMIUM */
         .carte-exercice { 
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 243, 250, 0.98)); 
             backdrop-filter: blur(25px); 
             padding: 60px 45px; 
-            border-radius: 50px; 
             max-width: 450px; 
             width: 100%; 
             text-align: center; 
@@ -326,6 +484,9 @@
             border: 6px solid rgba(255, 255, 255, 0.9); 
             position: relative;
             animation: slideUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            
+            /* FORME DE NUAGE */
+            border-radius: 60% 40% 70% 30% / 40% 60% 40% 60%;
         }
         @keyframes slideUp { 
             from { opacity: 0; transform: translateY(100px) scale(0.85); } 
@@ -335,12 +496,55 @@
         .question-texte { 
             font-size: 2.2rem; 
             font-weight: 700; 
-            color: #8B7AB8; 
+            color: var(--text-primary); 
             margin: 35px 0; 
             line-height: 1.5;
         }
         
-        /* Animation Erreur PREMIUM */
+        /* Settings Modal */
+        .settings-section {
+            margin: 25px 0;
+            text-align: left;
+        }
+        
+        .settings-label {
+            font-weight: 700;
+            color: var(--accent-secondary);
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+            display: block;
+        }
+        
+        .theme-presets {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 15px;
+        }
+        
+        .theme-preset {
+            padding: 15px;
+            border-radius: 20px;
+            border: 3px solid rgba(255, 179, 217, 0.3);
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-weight: 600;
+        }
+        
+        .theme-preset:hover {
+            transform: scale(1.05);
+            border-color: var(--accent-main);
+        }
+        
+        .theme-preset.active {
+            background: linear-gradient(135deg, #FFB3D9, #E0BBE4);
+            color: white;
+            border-color: white;
+        }
+        
+        /* Animation Erreur */
         @keyframes shake { 
             0%, 100% { transform: translateX(0) rotate(0); } 
             25% { transform: translateX(-20px) rotate(-4deg); } 
@@ -349,11 +553,11 @@
         }
         .shake { 
             animation: shake 0.5s ease; 
-            border-color: #FF6B9D !important; 
+            border-color: var(--accent-main) !important; 
         }
         
         .tagline { 
-            color: #C8A2E8; 
+            color: var(--accent-secondary); 
             font-size: 1.15rem; 
             margin-bottom: 30px; 
             font-weight: 500; 
@@ -361,13 +565,44 @@
         
         .switch-link { 
             margin-top: 20px; 
-            color: #C8A2E8; 
+            color: var(--accent-secondary); 
             cursor: pointer; 
             font-size: 1rem; 
             transition: color 0.3s;
             font-weight: 600;
         }
-        .switch-link:hover { color: #FF6B9D; }
+        .switch-link:hover { color: var(--accent-main); }
+        
+        .settings-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--accent-main), var(--accent-secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+            z-index: 100;
+            transition: all 0.3s ease;
+            border: 4px solid white;
+        }
+        
+        .settings-icon:hover {
+            transform: scale(1.1) rotate(90deg);
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.5);
+        }
+        
+        /* Chart container */
+        .chart-container {
+            position: relative;
+            height: 200px;
+            margin-top: 15px;
+        }
         
         /* Responsive */
         @media (max-width: 480px) {
@@ -375,12 +610,18 @@
             .emoji-geant { font-size: 5.5rem; }
             .titre-voeu { font-size: 1.8rem; }
             .question-texte { font-size: 1.8rem; }
+            .widget-container { grid-template-columns: 1fr; }
+            .avatar-grid { grid-template-columns: repeat(3, 1fr); }
+            .color-picker-grid { grid-template-columns: repeat(4, 1fr); }
         }
     </style>
 </head>
 <body>
 
-    <!-- Bulles flottantes ULTRA -->
+    <!-- Settings Icon -->
+    <div class="settings-icon" onclick="openSettings()">⚙️</div>
+
+    <!-- Bulles flottantes -->
     <div class="bubble" style="width:140px; height:140px; left:8%; top:15%; animation-delay: 0s;"></div>
     <div class="bubble" style="width:100px; height:100px; right:12%; top:25%; animation-delay: 1.5s;"></div>
     <div class="bubble" style="width:170px; height:170px; left:10%; bottom:10%; animation-delay: 2s;"></div>
@@ -405,14 +646,46 @@
             <!-- Header avec stats -->
             <div class="glass" style="padding: 30px 25px;">
                 <div class="header-premium">
-                    <div class="avatar-cupcake">🧁</div>
+                    <div class="avatar-cupcake" id="main-avatar" onclick="openSettings()">🧁</div>
                     <div style="flex:1">
-                        <div id="user-display" style="font-weight:700; color:#FF6B9D; font-size:1.6rem; margin-bottom: 12px;">JOUEUR</div>
+                        <div id="user-display" style="font-weight:700; color:var(--accent-main); font-size:1.6rem; margin-bottom: 12px;">JOUEUR</div>
                         <div style="display:flex; gap:12px; flex-wrap: wrap;">
                             <span class="stat-badge">💎 <span id="val-dia">0</span></span>
                             <span class="stat-badge">⭐ Niv. <span id="val-niv">1</span></span>
                             <span class="stat-badge">🔥 <span id="val-streak">0</span></span>
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- WIDGETS PREMIUM -->
+            <div class="widget-container">
+                <!-- Widget Citation -->
+                <div class="widget widget-full">
+                    <div class="widget-title">💭 Citation du jour</div>
+                    <div class="widget-quote" id="daily-quote">Chaque jour est une nouvelle aventure !</div>
+                </div>
+                
+                <!-- Widget Succès -->
+                <div class="widget">
+                    <div class="widget-title">🎯 Succès</div>
+                    <div class="widget-value" id="success-rate">0%</div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="success-bar" style="width: 0%"></div>
+                    </div>
+                </div>
+                
+                <!-- Widget Temps -->
+                <div class="widget">
+                    <div class="widget-title">⏱️ Temps</div>
+                    <div class="widget-value" id="study-time">0m</div>
+                </div>
+                
+                <!-- Widget Graphique -->
+                <div class="widget widget-full">
+                    <div class="widget-title">📊 Tes progrès cette semaine</div>
+                    <div class="chart-container">
+                        <canvas id="progressChart"></canvas>
                     </div>
                 </div>
             </div>
@@ -424,7 +697,7 @@
                 <button class="cat-btn" onclick="setCat('english', this)">🍦 English</button>
             </div>
 
-            <!-- CARTE QUESTION ÉPAISSE PREMIUM -->
+            <!-- CARTE QUESTION -->
             <div class="carte-question" onclick="openEx()">
                 <div class="emoji-geant" id="wish-emoji">🍩</div>
                 <h2 class="titre-voeu" id="wish-title">Vœu Magique #1</h2>
@@ -439,10 +712,10 @@
         </div>
     </div>
 
-    <!-- MODAL EXERCICE ULTRA -->
+    <!-- MODAL EXERCICE - BULLE NUAGE -->
     <div id="modal" class="modal-overlay">
         <div class="carte-exercice">
-            <h3 style="font-size:1.8rem; background: linear-gradient(135deg, #FF6B9D, #C8A2E8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;">🎯 Question Magique</h3>
+            <h3 style="font-size:1.8rem; background: linear-gradient(135deg, var(--accent-main), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;">🎯 Question Magique</h3>
             <p class="question-texte" id="ex-q"></p>
             <input type="text" id="ex-ans" placeholder="Ta réponse magique...">
             <button class="btn-premium" onclick="check()">Lancer le sort ! 🪄</button>
@@ -450,16 +723,88 @@
         </div>
     </div>
 
+    <!-- MODAL SETTINGS -->
+    <div id="settings-modal" class="modal-overlay">
+        <div class="carte-exercice" style="max-width: 500px;">
+            <h3 style="font-size:2rem; background: linear-gradient(135deg, var(--accent-main), var(--accent-secondary)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 30px;">⚙️ Personnalisation Premium</h3>
+            
+            <!-- Sélection Avatar -->
+            <div class="settings-section">
+                <span class="settings-label">👤 Choisis ton avatar</span>
+                <div class="avatar-grid">
+                    <div class="avatar-option" onclick="selectAvatar('🧁', this)">🧁</div>
+                    <div class="avatar-option" onclick="selectAvatar('🍰', this)">🍰</div>
+                    <div class="avatar-option" onclick="selectAvatar('🍭', this)">🍭</div>
+                    <div class="avatar-option" onclick="selectAvatar('🍬', this)">🍬</div>
+                    <div class="avatar-option" onclick="selectAvatar('🍩', this)">🍩</div>
+                    <div class="avatar-option" onclick="selectAvatar('🍪', this)">🍪</div>
+                    <div class="avatar-option" onclick="selectAvatar('🧋', this)">🧋</div>
+                    <div class="avatar-option" onclick="selectAvatar('🍦', this)">🍦</div>
+                    <div class="avatar-option" onclick="selectAvatar('🌈', this)">🌈</div>
+                    <div class="avatar-option" onclick="selectAvatar('⭐', this)">⭐</div>
+                    <div class="avatar-option" onclick="selectAvatar('💎', this)">💎</div>
+                    <div class="avatar-option" onclick="selectAvatar('🦄', this)">🦄</div>
+                </div>
+            </div>
+            
+            <!-- Sélection Couleur -->
+            <div class="settings-section">
+                <span class="settings-label">🎨 Choisis ta couleur préférée</span>
+                <div class="color-picker-grid">
+                    <div class="color-option" style="background: linear-gradient(135deg, #FFE5F1, #FFB3D9);" onclick="selectColor('pink', this)"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #E0BBE4, #C8A2E8);" onclick="selectColor('purple', this)"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #C1F7DC, #7FE6B8);" onclick="selectColor('green', this)"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #A5E7FF, #6BC5E8);" onclick="selectColor('blue', this)"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #FFD4B8, #FFB388);" onclick="selectColor('orange', this)"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #FFF5BA, #FFE66D);" onclick="selectColor('yellow', this)"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #FFB4D4, #FF85B3);" onclick="selectColor('rose', this)"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #B5E7FF, #89D8FF);" onclick="selectColor('sky', this)"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #D4B5FF, #B689FF);" onclick="selectColor('lavender', this)"></div>
+                    <div class="color-option" style="background: linear-gradient(135deg, #FFD1DC, #FFA8B8);" onclick="selectColor('coral', this)"></div>
+                </div>
+            </div>
+            
+            <!-- Thèmes Préréglés -->
+            <div class="settings-section">
+                <span class="settings-label">✨ Thèmes magiques</span>
+                <div class="theme-presets">
+                    <div class="theme-preset active" onclick="applyTheme('candy')">🍭 Candy</div>
+                    <div class="theme-preset" onclick="applyTheme('ocean')">🌊 Océan</div>
+                    <div class="theme-preset" onclick="applyTheme('sunset')">🌅 Coucher</div>
+                    <div class="theme-preset" onclick="applyTheme('forest')">🌲 Forêt</div>
+                </div>
+            </div>
+            
+            <button class="btn-premium" onclick="closeSettings()" style="margin-top: 25px;">Sauvegarder ✨</button>
+        </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
-        // Configuration Supabase (TON SYSTÈME QUI FONCTIONNE)
+        // Configuration Supabase
         const S_URL = 'https://lcbwehiwjowgthazrydy.supabase.co';
         const S_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxjYndlaGl3am93Z3RoYXpyeWR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzNTg4NjIsImV4cCI6MjA4NDkzNDg2Mn0.2nP42Uh262Jt-1stolzSVM8_EEzrAdCutKgd7B2MurY';
         const client = window.supabase.createClient(S_URL, S_KEY);
 
         let profile = null, currentCat = 'math', currentIdx = 0;
+        let selectedAvatar = '🧁';
+        let studyStartTime = null;
+        let totalCorrect = 0;
+        let totalAnswered = 0;
+        let progressChart = null;
         
-        // BANQUE DE 25 QUESTIONS PAR THÈME (ULTRA VARIÉE)
+        // Citations inspirantes
+        const quotes = [
+            "Chaque jour est une nouvelle aventure ! ✨",
+            "Tu es capable de grandes choses ! 🌟",
+            "Apprendre, c'est grandir chaque jour ! 🌱",
+            "Ta créativité est magique ! 🎨",
+            "Continue, tu es incroyable ! 💫",
+            "Chaque erreur est une leçon ! 📚",
+            "Crois en toi, champion ! 🏆"
+        ];
+        
+        // BANQUE DE QUESTIONS
         const BANK = { 
             math: [
                 {q:"5 + 8", a:"13"}, {q:"12 x 3", a:"36"}, {q:"20 - 7", a:"13"}, {q:"15 ÷ 3", a:"5"},
@@ -502,7 +847,181 @@
             ]
         };
 
-        // AUTHENTIFICATION (TON SYSTÈME QUI FONCTIONNE)
+        // Initialiser le graphique
+        function initChart() {
+            const ctx = document.getElementById('progressChart');
+            if (!ctx) return;
+            
+            const data = JSON.parse(localStorage.getItem('weeklyProgress') || '[0,0,0,0,0,0,0]');
+            
+            progressChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'],
+                    datasets: [{
+                        label: 'Questions réussies',
+                        data: data,
+                        borderColor: '#FF6B9D',
+                        backgroundColor: 'rgba(255, 107, 157, 0.1)',
+                        tension: 0.4,
+                        fill: true,
+                        pointBackgroundColor: '#FF6B9D',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            ticks: { color: '#C8A2E8' },
+                            grid: { color: 'rgba(200, 162, 232, 0.1)' }
+                        },
+                        x: {
+                            ticks: { color: '#C8A2E8' },
+                            grid: { display: false }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Mettre à jour les widgets
+        function updateWidgets() {
+            // Citation aléatoire
+            const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            document.getElementById('daily-quote').textContent = randomQuote;
+            
+            // Taux de succès
+            const successRate = totalAnswered > 0 ? Math.round((totalCorrect / totalAnswered) * 100) : 0;
+            document.getElementById('success-rate').textContent = successRate + '%';
+            document.getElementById('success-bar').style.width = successRate + '%';
+            
+            // Temps d'étude
+            if (studyStartTime) {
+                const minutes = Math.floor((Date.now() - studyStartTime) / 60000);
+                document.getElementById('study-time').textContent = minutes + 'm';
+            }
+        }
+
+        // Ouvrir les paramètres
+        function openSettings() {
+            document.getElementById('settings-modal').classList.add('actif');
+            // Marquer l'avatar actuel comme sélectionné
+            document.querySelectorAll('.avatar-option').forEach(opt => {
+                if (opt.textContent === selectedAvatar) {
+                    opt.classList.add('selected');
+                }
+            });
+        }
+
+        function closeSettings() {
+            document.getElementById('settings-modal').classList.remove('actif');
+            // Sauvegarder les préférences
+            localStorage.setItem('selectedAvatar', selectedAvatar);
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+
+        // Sélection avatar
+        function selectAvatar(emoji, element) {
+            selectedAvatar = emoji;
+            document.querySelectorAll('.avatar-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            document.getElementById('main-avatar').textContent = emoji;
+        }
+
+        // Sélection couleur
+        function selectColor(colorName, element) {
+            document.querySelectorAll('.color-option').forEach(opt => opt.classList.remove('selected'));
+            element.classList.add('selected');
+            
+            const colorSchemes = {
+                pink: { primary: '#FFE5F1', secondary: '#E0BBE4', tertiary: '#FFB3D9', accent: '#FF6B9D' },
+                purple: { primary: '#E0BBE4', secondary: '#C8A2E8', tertiary: '#D4B5FF', accent: '#A678DE' },
+                green: { primary: '#C1F7DC', secondary: '#7FE6B8', tertiary: '#A5F3D0', accent: '#44B3A8' },
+                blue: { primary: '#A5E7FF', secondary: '#6BC5E8', tertiary: '#89D8FF', accent: '#4A9FCC' },
+                orange: { primary: '#FFD4B8', secondary: '#FFB388', tertiary: '#FFC299', accent: '#FF8C42' },
+                yellow: { primary: '#FFF5BA', secondary: '#FFE66D', tertiary: '#FFED8F', accent: '#FFD93D' },
+                rose: { primary: '#FFB4D4', secondary: '#FF85B3', tertiary: '#FF9FC5', accent: '#FF5C9D' },
+                sky: { primary: '#B5E7FF', secondary: '#89D8FF', tertiary: '#A0DFFF', accent: '#5AC8FA' },
+                lavender: { primary: '#D4B5FF', secondary: '#B689FF', tertiary: '#C49FFF', accent: '#9F6FFF' },
+                coral: { primary: '#FFD1DC', secondary: '#FFA8B8', tertiary: '#FFBDCA', accent: '#FF7F9A' }
+            };
+            
+            const scheme = colorSchemes[colorName];
+            document.documentElement.style.setProperty('--bg-primary', scheme.primary);
+            document.documentElement.style.setProperty('--bg-secondary', scheme.secondary);
+            document.documentElement.style.setProperty('--bg-tertiary', scheme.tertiary);
+            document.documentElement.style.setProperty('--accent-main', scheme.accent);
+            
+            localStorage.setItem('colorScheme', colorName);
+        }
+
+        // Appliquer un thème
+        function applyTheme(themeName) {
+            document.querySelectorAll('.theme-preset').forEach(t => t.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            const themes = {
+                candy: {
+                    colors: ['#FFE5F1', '#E0BBE4', '#C1F7DC', '#A5E7FF', '#FFD4B8'],
+                    accent: '#FF6B9D'
+                },
+                ocean: {
+                    colors: ['#A5E7FF', '#6BC5E8', '#4A9FCC', '#7FE6B8', '#C1F7DC'],
+                    accent: '#4A9FCC'
+                },
+                sunset: {
+                    colors: ['#FFD4B8', '#FFB388', '#FF8C42', '#FFE66D', '#FFC299'],
+                    accent: '#FF8C42'
+                },
+                forest: {
+                    colors: ['#C1F7DC', '#7FE6B8', '#44B3A8', '#A5F3D0', '#B5E7D8'],
+                    accent: '#44B3A8'
+                }
+            };
+            
+            const theme = themes[themeName];
+            document.documentElement.style.setProperty('--bg-primary', theme.colors[0]);
+            document.documentElement.style.setProperty('--bg-secondary', theme.colors[1]);
+            document.documentElement.style.setProperty('--bg-tertiary', theme.colors[2]);
+            document.documentElement.style.setProperty('--bg-quaternary', theme.colors[3]);
+            document.documentElement.style.setProperty('--bg-quinary', theme.colors[4]);
+            document.documentElement.style.setProperty('--accent-main', theme.accent);
+            
+            localStorage.setItem('theme', themeName);
+        }
+
+        // Charger les préférences
+        function loadPreferences() {
+            const savedAvatar = localStorage.getItem('selectedAvatar');
+            const savedColor = localStorage.getItem('colorScheme');
+            const savedTheme = localStorage.getItem('theme');
+            
+            if (savedAvatar) {
+                selectedAvatar = savedAvatar;
+                document.getElementById('main-avatar').textContent = savedAvatar;
+            }
+            
+            if (savedTheme) {
+                applyTheme(savedTheme);
+            } else if (savedColor) {
+                const colorElement = document.querySelector(`[onclick*="${savedColor}"]`);
+                if (colorElement) selectColor(savedColor, colorElement);
+            }
+        }
+
+        // AUTHENTIFICATION
         async function auth(type) {
             const u = document.getElementById('username').value.trim();
             const p = document.getElementById('pass').value;
@@ -531,6 +1050,110 @@
         }
 
         function showDash() {
+            document.getElementById('auth-screen').classList.remove('active');
+            document.getElementById('dashboard').classList.add('active');
             document.getElementById('user-display').innerText = profile.email.toUpperCase();
             document.getElementById('val-dia').innerText = profile.diamonds;
-            document.getElementById('val-
+            document.getElementById('val-niv').innerText = profile.level;
+            document.getElementById('val-streak').innerText = profile.streak;
+            
+            studyStartTime = Date.now();
+            loadPreferences();
+            updateCard();
+            updateWidgets();
+            initChart();
+            
+            // Mettre à jour les widgets régulièrement
+            setInterval(updateWidgets, 30000);
+        }
+
+        function setCat(cat, btn) {
+            currentCat = cat;
+            currentIdx = 0;
+            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('actif'));
+            btn.classList.add('actif');
+            updateCard();
+        }
+
+        function updateCard() {
+            const emojis = { math: '🍩', french: '🍬', english: '🍦' };
+            document.getElementById('wish-emoji').innerText = emojis[currentCat];
+            document.getElementById('wish-title').innerText = `Vœu Magique #${currentIdx + 1}`;
+        }
+
+        function nav(dir) {
+            const max = BANK[currentCat].length - 1;
+            currentIdx = (currentIdx + dir + max + 1) % (max + 1);
+            updateCard();
+        }
+
+        function openEx() {
+            const ex = BANK[currentCat][currentIdx];
+            document.getElementById('ex-q').innerText = ex.q;
+            document.getElementById('ex-ans').value = '';
+            document.getElementById('modal').classList.add('actif');
+            document.getElementById('ex-ans').focus();
+        }
+
+        function closeEx() {
+            document.getElementById('modal').classList.remove('actif');
+        }
+
+        async function check() {
+            const userAns = document.getElementById('ex-ans').value.trim().toLowerCase();
+            const correctAns = BANK[currentCat][currentIdx].a.toLowerCase();
+            
+            totalAnswered++;
+            
+            if(userAns === correctAns) {
+                totalCorrect++;
+                confetti({ particleCount: 150, spread: 90, origin: { y: 0.6 } });
+                
+                profile.diamonds += 10;
+                profile.streak++;
+                await client.from('profiles').update({ 
+                    diamonds: profile.diamonds, 
+                    streak: profile.streak 
+                }).eq('id', profile.id);
+                
+                document.getElementById('val-dia').innerText = profile.diamonds;
+                document.getElementById('val-streak').innerText = profile.streak;
+                
+                // Mettre à jour les données du graphique
+                const weeklyData = JSON.parse(localStorage.getItem('weeklyProgress') || '[0,0,0,0,0,0,0]');
+                const today = new Date().getDay();
+                weeklyData[today === 0 ? 6 : today - 1]++;
+                localStorage.setItem('weeklyProgress', JSON.stringify(weeklyData));
+                if (progressChart) {
+                    progressChart.data.datasets[0].data = weeklyData;
+                    progressChart.update();
+                }
+                
+                closeEx();
+                nav(1);
+                updateWidgets();
+            } else {
+                document.getElementById('ex-ans').classList.add('shake');
+                setTimeout(() => document.getElementById('ex-ans').classList.remove('shake'), 500);
+                updateWidgets();
+            }
+        }
+
+        // Enter pour valider
+        document.addEventListener('keydown', (e) => {
+            if(e.key === 'Enter') {
+                if(document.getElementById('modal').classList.contains('actif')) {
+                    check();
+                } else if(document.getElementById('auth-screen').classList.contains('active')) {
+                    auth('login');
+                }
+            }
+        });
+
+        // Au chargement
+        window.addEventListener('load', () => {
+            loadPreferences();
+        });
+    </script>
+</body>
+</html>
