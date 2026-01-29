@@ -1,129 +1,528 @@
-# test-<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🍭 Candy Dream Academy ✨</title>
+    <title>🍭 Candy Dream Academy ULTRA</title>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <style>
-        /* TON DESIGN PRÉFÉRÉ (NE PAS TOUCHER) */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { font-family: 'Fredoka', sans-serif; background: linear-gradient(-45deg, #FFE5F1, #E0BBE4, #C1F7DC, #A5E7FF); background-size: 400% 400%; animation: gradientBG 15s ease infinite; min-height: 100vh; display: flex; justify-content: center; overflow: hidden; }
-        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
-        .bubble { position: fixed; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,179,217,0.2)); box-shadow: 0 10px 30px rgba(0,0,0,0.05); animation: float 8s ease-in-out infinite; z-index: 1; pointer-events: none; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-40px); } }
-        .container { width: 100%; max-width: 450px; padding: 20px; z-index: 10; position: relative; }
-        .glass { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.7); border-radius: 50px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); position: relative; overflow: hidden; }
-        .glass::after { content: ''; position: absolute; top: -150%; left: -150%; width: 300%; height: 300%; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent); transform: rotate(45deg); animation: shine 6s infinite; pointer-events: none; }
-        @keyframes shine { 0% { left: -150%; } 100% { left: 150%; } }
-        .screen { display: none; flex-direction: column; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        .active { display: flex !important; }
-        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        .logo { font-family: 'Bubblegum Sans', cursive; font-size: 3.2rem; text-align: center; background: linear-gradient(45deg, #FF6B9D, #C8A2E8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 20px 0; }
-        input { width: 100%; padding: 20px; border-radius: 30px; border: 3px solid #C1F7DC; background: white; text-align: center; font-family: 'Fredoka'; font-size: 1.1rem; margin: 10px 0; outline: none; }
-        .btn-premium { background: linear-gradient(135deg, #FF6B9D, #FFB347); color: white; border: none; padding: 20px; border-radius: 30px; font-weight: 700; font-size: 1.2rem; cursor: pointer; width: 100%; box-shadow: 0 10px 25px rgba(255, 107, 157, 0.4); margin-top: 10px; }
-        .btn-secondary { background: white; color: #FF6B9D; border: 2px solid #FF6B9D; margin-top: 15px; }
-        .stat-badge { background: white; padding: 10px 15px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .avatar-cupcake { width: 85px; height: 85px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); animation: bounce 3s infinite ease-in-out; }
-        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
-        .nav-arrow { width: 65px; height: 65px; border-radius: 50%; border: none; background: white; font-size: 1.8rem; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(224, 187, 228, 0.6); backdrop-filter: blur(10px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
+        
+        body { 
+            font-family: 'Fredoka', sans-serif; 
+            background: linear-gradient(-45deg, #FFE5F1, #E0BBE4, #C1F7DC, #A5E7FF, #FFD4B8); 
+            background-size: 400% 400%; 
+            animation: gradientBG 15s ease infinite; 
+            min-height: 100vh; 
+            display: flex; 
+            justify-content: center; 
+            overflow-x: hidden;
+            position: relative;
+        }
+        
+        @keyframes gradientBG { 
+            0%, 100% { background-position: 0% 50%; } 
+            50% { background-position: 100% 50%; } 
+        }
+        
+        /* Bulles flottantes ULTRA */
+        .bubble { 
+            position: fixed; 
+            border-radius: 50%; 
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,179,217,0.3)); 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08); 
+            animation: float 10s ease-in-out infinite; 
+            z-index: 1; 
+            pointer-events: none; 
+        }
+        @keyframes float { 
+            0%, 100% { transform: translateY(0) rotate(0deg); } 
+            33% { transform: translateY(-50px) rotate(5deg); }
+            66% { transform: translateY(-30px) rotate(-3deg); }
+        }
+        
+        .container { 
+            width: 100%; 
+            max-width: 480px; 
+            padding: 20px; 
+            z-index: 10; 
+            position: relative; 
+        }
+        
+        /* Effet Glassmorphism PREMIUM */
+        .glass { 
+            background: rgba(255, 255, 255, 0.75); 
+            backdrop-filter: blur(20px); 
+            -webkit-backdrop-filter: blur(20px); 
+            border: 3px solid rgba(255, 255, 255, 0.8); 
+            border-radius: 45px; 
+            box-shadow: 
+                0 25px 70px rgba(255, 179, 217, 0.3),
+                inset 0 1px 30px rgba(255, 255, 255, 0.5); 
+            position: relative; 
+            overflow: hidden; 
+        }
+        
+        .glass::before { 
+            content: ''; 
+            position: absolute; 
+            top: -50%; 
+            left: -50%; 
+            width: 200%; 
+            height: 200%; 
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.5), transparent); 
+            transform: rotate(45deg); 
+            animation: shine 8s infinite; 
+            pointer-events: none; 
+        }
+        @keyframes shine { 
+            0% { transform: translateX(-100%) rotate(45deg); } 
+            100% { transform: translateX(100%) rotate(45deg); } 
+        }
+        
+        .screen { display: none; }
+        .active { display: block !important; }
+        
+        .logo { 
+            font-family: 'Bubblegum Sans', cursive; 
+            font-size: 3.5rem; 
+            text-align: center; 
+            background: linear-gradient(135deg, #FF6B9D, #C8A2E8, #FFB347); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            margin: 25px 0 15px; 
+            animation: rainbow 4s ease infinite;
+            filter: drop-shadow(0 5px 15px rgba(255, 107, 157, 0.3));
+        }
+        @keyframes rainbow { 0%, 100% { filter: hue-rotate(0deg); } 50% { filter: hue-rotate(15deg); } }
+        
+        input { 
+            width: 100%; 
+            padding: 20px 25px; 
+            border-radius: 35px; 
+            border: 3px solid rgba(193, 247, 220, 0.6); 
+            background: white; 
+            text-align: center; 
+            font-family: 'Fredoka'; 
+            font-size: 1.1rem; 
+            margin: 12px 0; 
+            outline: none; 
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+        }
+        input:focus { 
+            border-color: #FF6B9D; 
+            box-shadow: 0 0 0 6px rgba(255, 107, 157, 0.1), 0 10px 30px rgba(255, 107, 157, 0.2);
+            transform: translateY(-2px);
+        }
+        
+        .btn-premium { 
+            background: linear-gradient(135deg, #FF6B9D, #FFB347); 
+            color: white; 
+            border: none; 
+            padding: 22px; 
+            border-radius: 35px; 
+            font-weight: 700; 
+            font-size: 1.25rem; 
+            cursor: pointer; 
+            width: 100%; 
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.4); 
+            margin-top: 12px; 
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-premium:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 15px 40px rgba(255, 107, 157, 0.5); 
+        }
+        .btn-premium:active { transform: translateY(0); }
+        
+        .btn-secondary { 
+            background: white; 
+            color: #FF6B9D; 
+            border: 3px solid #FF6B9D; 
+            box-shadow: 0 8px 20px rgba(255, 107, 157, 0.2);
+        }
+        .btn-secondary:hover {
+            background: rgba(255, 107, 157, 0.1);
+        }
+        
+        /* Header Dashboard PREMIUM */
+        .header-premium { 
+            display: flex; 
+            align-items: center; 
+            gap: 25px; 
+            margin-bottom: 25px;
+        }
+        
+        .avatar-cupcake { 
+            width: 95px; 
+            height: 95px; 
+            background: linear-gradient(135deg, #FFB3D9, #E0BBE4); 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 4rem; 
+            box-shadow: 0 12px 30px rgba(255, 107, 157, 0.3); 
+            border: 5px solid white;
+            animation: bounce 3s infinite ease-in-out; 
+        }
+        @keyframes bounce { 
+            0%, 100% { transform: translateY(0) scale(1); } 
+            50% { transform: translateY(-15px) scale(1.05); } 
+        }
+        
+        .stat-badge { 
+            background: linear-gradient(145deg, white, rgba(255, 243, 250, 0.9)); 
+            padding: 12px 18px; 
+            border-radius: 25px; 
+            font-weight: 700; 
+            font-size: 0.95rem; 
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            border: 2px solid rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Catégories ULTRA */
+        .cat-container { 
+            display: flex; 
+            gap: 12px; 
+            margin-bottom: 30px; 
+        }
+        .cat-btn { 
+            flex: 1; 
+            padding: 18px 12px; 
+            border: none; 
+            border-radius: 30px; 
+            font-family: 'Fredoka'; 
+            font-weight: 700; 
+            font-size: 1rem; 
+            cursor: pointer; 
+            background: rgba(255, 255, 255, 0.85); 
+            border: 3px solid rgba(255, 179, 217, 0.3); 
+            transition: all 0.3s ease; 
+            box-shadow: 0 8px 20px rgba(255, 179, 217, 0.2);
+        }
+        .cat-btn.actif { 
+            background: linear-gradient(135deg, #FFB3D9, #E0BBE4); 
+            color: white; 
+            transform: scale(1.08); 
+            border-color: white; 
+            box-shadow: 0 12px 35px rgba(255, 107, 157, 0.4); 
+        }
+        
+        /* CARTE QUESTION ÉPAISSE PREMIUM */
+        .carte-question { 
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(255, 243, 250, 0.9)); 
+            backdrop-filter: blur(25px);
+            border-radius: 50px; 
+            padding: 60px 40px; 
+            text-align: center; 
+            box-shadow: 
+                0 30px 80px rgba(255, 179, 217, 0.4),
+                inset 0 -3px 25px rgba(255, 255, 255, 0.6),
+                0 0 0 12px rgba(255, 255, 255, 0.6),
+                0 0 0 16px rgba(255, 179, 217, 0.2); 
+            border: 5px solid rgba(255, 255, 255, 0.9); 
+            cursor: pointer; 
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            position: relative; 
+            overflow: hidden;
+        }
+        .carte-question:hover { 
+            transform: translateY(-15px) scale(1.02); 
+            box-shadow: 
+                0 40px 100px rgba(255, 179, 217, 0.5),
+                inset 0 -3px 25px rgba(255, 255, 255, 0.6),
+                0 0 0 12px rgba(255, 255, 255, 0.6),
+                0 0 0 16px rgba(255, 179, 217, 0.3); 
+        }
+        
+        .emoji-geant { 
+            font-size: 7rem; 
+            margin-bottom: 25px; 
+            animation: float 4s ease infinite;
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.1));
+        }
+        
+        .titre-voeu { 
+            font-size: 2.2rem; 
+            font-weight: 700; 
+            background: linear-gradient(135deg, #FF6B9D, #C8A2E8); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            margin-bottom: 20px; 
+        }
+        
+        .recompense-badge { 
+            display: inline-block; 
+            background: linear-gradient(135deg, #4ECDC4, #44B3A8); 
+            color: white; 
+            padding: 15px 30px; 
+            border-radius: 30px; 
+            font-weight: 700; 
+            font-size: 1.5rem; 
+            box-shadow: 0 8px 25px rgba(78, 205, 196, 0.4);
+            border: 3px solid white;
+        }
+        
+        /* Flèches navigation PREMIUM */
+        .nav-container { 
+            display: flex; 
+            justify-content: center; 
+            gap: 35px; 
+            margin-top: 35px; 
+        }
+        .nav-arrow { 
+            width: 75px; 
+            height: 75px; 
+            border-radius: 50%; 
+            border: none; 
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.95), rgba(255, 243, 250, 0.95)); 
+            font-size: 2rem; 
+            cursor: pointer; 
+            box-shadow: 0 10px 30px rgba(255, 179, 217, 0.3); 
+            transition: all 0.3s ease; 
+            border: 4px solid rgba(255, 255, 255, 0.8);
+        }
+        .nav-arrow:hover { 
+            transform: scale(1.15) rotate(10deg); 
+            box-shadow: 0 15px 40px rgba(255, 179, 217, 0.4); 
+        }
+        
+        /* MODAL EXERCICE ULTRA */
+        .modal-overlay { 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            background: rgba(224, 187, 228, 0.7); 
+            backdrop-filter: blur(15px); 
+            z-index: 1000; 
+            display: none; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px; 
+            animation: fadeIn 0.3s ease;
+        }
+        .modal-overlay.actif { display: flex !important; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        .carte-exercice { 
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 243, 250, 0.98)); 
+            backdrop-filter: blur(25px); 
+            padding: 60px 45px; 
+            border-radius: 50px; 
+            max-width: 450px; 
+            width: 100%; 
+            text-align: center; 
+            box-shadow: 
+                0 35px 90px rgba(255, 107, 157, 0.5),
+                inset 0 -3px 30px rgba(255, 255, 255, 0.6),
+                0 0 0 14px rgba(255, 255, 255, 0.7); 
+            border: 6px solid rgba(255, 255, 255, 0.9); 
+            position: relative;
+            animation: slideUp 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+        @keyframes slideUp { 
+            from { opacity: 0; transform: translateY(100px) scale(0.85); } 
+            to { opacity: 1; transform: translateY(0) scale(1); } 
+        }
+        
+        .question-texte { 
+            font-size: 2.2rem; 
+            font-weight: 700; 
+            color: #8B7AB8; 
+            margin: 35px 0; 
+            line-height: 1.5;
+        }
+        
+        /* Animation Erreur PREMIUM */
+        @keyframes shake { 
+            0%, 100% { transform: translateX(0) rotate(0); } 
+            25% { transform: translateX(-20px) rotate(-4deg); } 
+            50% { transform: translateX(20px) rotate(4deg); } 
+            75% { transform: translateX(-15px) rotate(-3deg); } 
+        }
+        .shake { 
+            animation: shake 0.5s ease; 
+            border-color: #FF6B9D !important; 
+        }
+        
+        .tagline { 
+            color: #C8A2E8; 
+            font-size: 1.15rem; 
+            margin-bottom: 30px; 
+            font-weight: 500; 
+        }
+        
+        .switch-link { 
+            margin-top: 20px; 
+            color: #C8A2E8; 
+            cursor: pointer; 
+            font-size: 1rem; 
+            transition: color 0.3s;
+            font-weight: 600;
+        }
+        .switch-link:hover { color: #FF6B9D; }
+        
+        /* Responsive */
+        @media (max-width: 480px) {
+            .logo { font-size: 2.8rem; }
+            .emoji-geant { font-size: 5.5rem; }
+            .titre-voeu { font-size: 1.8rem; }
+            .question-texte { font-size: 1.8rem; }
+        }
     </style>
 </head>
 <body>
 
-    <div class="bubble" style="width:120px; height:120px; left:10%; top:20%;"></div>
-    <div class="bubble" style="width:150px; height:150px; left:60%; bottom:10%;"></div>
+    <!-- Bulles flottantes ULTRA -->
+    <div class="bubble" style="width:140px; height:140px; left:8%; top:15%; animation-delay: 0s;"></div>
+    <div class="bubble" style="width:100px; height:100px; right:12%; top:25%; animation-delay: 1.5s;"></div>
+    <div class="bubble" style="width:170px; height:170px; left:10%; bottom:10%; animation-delay: 2s;"></div>
+    <div class="bubble" style="width:120px; height:120px; right:8%; bottom:20%; animation-delay: 0.7s;"></div>
+    <div class="bubble" style="width:90px; height:90px; left:50%; top:50%; animation-delay: 1s;"></div>
 
     <div class="container">
+        <!-- ÉCRAN AUTHENTIFICATION -->
         <div id="auth-screen" class="screen active">
-            <div class="glass" style="padding: 40px 30px; text-align: center;">
-                <h1 class="logo">Candy Academy</h1>
-                <p id="msg" style="color:#888; margin-bottom:15px;">Moteur de Type 10 Activé 🚀</p>
-                <input type="text" id="username" placeholder="Ton Pseudo">
-                <input type="password" id="pass" placeholder="Mot de passe">
+            <div class="glass" style="padding: 50px 35px; text-align: center;">
+                <h1 class="logo">🍭 Candy Academy 🍬</h1>
+                <p class="tagline">Entre dans un monde magique et sucré !</p>
+                <input type="text" id="username" placeholder="✨ Ton pseudo magique">
+                <input type="password" id="pass" placeholder="🔐 Mot de passe (6+ caractères)">
                 <button class="btn-premium" onclick="auth('login')">SE CONNECTER 🍬</button>
                 <button class="btn-premium btn-secondary" onclick="auth('signup')">CRÉER COMPTE ✨</button>
             </div>
         </div>
 
+        <!-- DASHBOARD ULTRA PREMIUM -->
         <div id="dashboard" class="screen">
-            <div class="glass" style="padding: 25px; margin-bottom: 20px; display: flex; align-items: center; gap: 20px;">
-                <div class="avatar-cupcake">🧁</div>
-                <div style="flex:1">
-                    <div id="user-display" style="font-weight:700; color:#FF6B9D; font-size:1.4rem;">JOUEUR</div>
-                    <div style="display:flex; gap:10px; margin-top:8px;">
-                        <span class="stat-badge">💎 <span id="val-dia">0</span></span>
-                        <span class="stat-badge">⭐ <span id="val-niv">1</span></span>
+            <!-- Header avec stats -->
+            <div class="glass" style="padding: 30px 25px;">
+                <div class="header-premium">
+                    <div class="avatar-cupcake">🧁</div>
+                    <div style="flex:1">
+                        <div id="user-display" style="font-weight:700; color:#FF6B9D; font-size:1.6rem; margin-bottom: 12px;">JOUEUR</div>
+                        <div style="display:flex; gap:12px; flex-wrap: wrap;">
+                            <span class="stat-badge">💎 <span id="val-dia">0</span></span>
+                            <span class="stat-badge">⭐ Niv. <span id="val-niv">1</span></span>
+                            <span class="stat-badge">🔥 <span id="val-streak">0</span></span>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div style="display:flex; gap:10px; margin-bottom:20px;">
-                <button class="stat-badge" style="flex:1; border:none; cursor:pointer;" onclick="setCat('math')">🍩 Maths</button>
-                <button class="stat-badge" style="flex:1; border:none; cursor:pointer;" onclick="setCat('french')">🍬 Français</button>
-                <button class="stat-badge" style="flex:1; border:none; cursor:pointer;" onclick="setCat('english')">🍦 English</button>
+            <!-- Catégories -->
+            <div class="cat-container">
+                <button class="cat-btn actif" onclick="setCat('math', this)">🍩 Maths</button>
+                <button class="cat-btn" onclick="setCat('french', this)">🍬 Français</button>
+                <button class="cat-btn" onclick="setCat('english', this)">🍦 English</button>
             </div>
 
-            <div class="glass" style="padding:50px; text-align:center; cursor:pointer;" onclick="openEx()">
-                <div id="wish-emoji" style="font-size:5rem; margin-bottom:20px;">🍩</div>
-                <h2 id="wish-title" style="color:#FF6B9D;">Vœu Magique #1</h2>
-                <div style="margin-top:20px; background:#4ECDC4; color:white; padding:12px; border-radius:20px; font-weight:700;">Gagne 10 Diamants 💎</div>
+            <!-- CARTE QUESTION ÉPAISSE PREMIUM -->
+            <div class="carte-question" onclick="openEx()">
+                <div class="emoji-geant" id="wish-emoji">🍩</div>
+                <h2 class="titre-voeu" id="wish-title">Vœu Magique #1</h2>
+                <div class="recompense-badge">💎 +10 Diamants</div>
             </div>
 
-            <div style="display:flex; justify-content:center; gap:30px; margin-top:30px;">
+            <!-- Navigation -->
+            <div class="nav-container">
                 <button class="nav-arrow" onclick="nav(-1)">👈</button>
                 <button class="nav-arrow" onclick="nav(1)">👉</button>
             </div>
         </div>
     </div>
 
+    <!-- MODAL EXERCICE ULTRA -->
     <div id="modal" class="modal-overlay">
-        <div class="glass" style="padding:50px 30px; width:100%; max-width:400px; text-align:center;">
-            <p id="ex-q" style="font-size:2rem; font-weight:700; color:#8B7AB8; margin-bottom:30px;"></p>
-            <input type="text" id="ex-ans" placeholder="Ta réponse...">
+        <div class="carte-exercice">
+            <h3 style="font-size:1.8rem; background: linear-gradient(135deg, #FF6B9D, #C8A2E8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px;">🎯 Question Magique</h3>
+            <p class="question-texte" id="ex-q"></p>
+            <input type="text" id="ex-ans" placeholder="Ta réponse magique...">
             <button class="btn-premium" onclick="check()">Lancer le sort ! 🪄</button>
-            <p onclick="closeEx()" style="margin-top:20px; color:#ccc; cursor:pointer;">Annuler</p>
+            <p onclick="closeEx()" class="switch-link">Annuler</p>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <script>
+        // Configuration Supabase (TON SYSTÈME QUI FONCTIONNE)
         const S_URL = 'https://lcbwehiwjowgthazrydy.supabase.co';
         const S_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxjYndlaGl3am93Z3RoYXpyeWR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzNTg4NjIsImV4cCI6MjA4NDkzNDg2Mn0.2nP42Uh262Jt-1stolzSVM8_EEzrAdCutKgd7B2MurY';
         const client = window.supabase.createClient(S_URL, S_KEY);
 
         let profile = null, currentCat = 'math', currentIdx = 0;
+        
+        // BANQUE DE 25 QUESTIONS PAR THÈME (ULTRA VARIÉE)
         const BANK = { 
-            math: Array.from({length:30}, (_,i)=>({q:`${i+12} x 5`, a:( (i+12)*5 ).toString()})),
-            french: Array.from({length:30}, ()=>({q:"Pluriel de 'Hibou'", a:"hiboux"})),
-            english: Array.from({length:30}, ()=>({q:"Livre en anglais", a:"book"}))
+            math: [
+                {q:"5 + 8", a:"13"}, {q:"12 x 3", a:"36"}, {q:"20 - 7", a:"13"}, {q:"15 ÷ 3", a:"5"},
+                {q:"9 + 6", a:"15"}, {q:"7 x 4", a:"28"}, {q:"18 - 9", a:"9"}, {q:"24 ÷ 6", a:"4"},
+                {q:"11 + 14", a:"25"}, {q:"6 x 7", a:"42"}, {q:"30 - 12", a:"18"}, {q:"45 ÷ 9", a:"5"},
+                {q:"8 + 17", a:"25"}, {q:"9 x 5", a:"45"}, {q:"50 - 23", a:"27"}, {q:"36 ÷ 4", a:"9"},
+                {q:"13 + 19", a:"32"}, {q:"8 x 8", a:"64"}, {q:"40 - 15", a:"25"}, {q:"63 ÷ 7", a:"9"},
+                {q:"16 + 24", a:"40"}, {q:"11 x 6", a:"66"}, {q:"55 - 28", a:"27"}, {q:"72 ÷ 8", a:"9"},
+                {q:"25 + 35", a:"60"}
+            ],
+            french: [
+                {q:"Pluriel de 'Cheval'", a:"chevaux"}, {q:"Pluriel de 'Hibou'", a:"hiboux"}, 
+                {q:"Pluriel de 'Œuf'", a:"œufs"}, {q:"Pluriel de 'Chat'", a:"chats"},
+                {q:"Pluriel de 'Nez'", a:"nez"}, {q:"Pluriel de 'Gâteau'", a:"gâteaux"},
+                {q:"Pluriel de 'Journal'", a:"journaux"}, {q:"Pluriel de 'Chou'", a:"choux"},
+                {q:"Pluriel de 'Bijou'", a:"bijoux"}, {q:"Pluriel de 'Bateau'", a:"bateaux"},
+                {q:"Pluriel de 'Souris'", a:"souris"}, {q:"Pluriel de 'Feu'", a:"feux"},
+                {q:"Pluriel de 'Jeu'", a:"jeux"}, {q:"Pluriel de 'Cheveu'", a:"cheveux"},
+                {q:"Conjugue 'Aller' (Je)", a:"vais"}, {q:"Conjugue 'Avoir' (Tu)", a:"as"},
+                {q:"Conjugue 'Être' (Il)", a:"est"}, {q:"Conjugue 'Faire' (Nous)", a:"faisons"},
+                {q:"Conjugue 'Dire' (Vous)", a:"dites"}, {q:"Conjugue 'Venir' (Ils)", a:"viennent"},
+                {q:"Passé de 'Manger' (J'ai...)", a:"mangé"}, {q:"Passé de 'Finir' (J'ai...)", a:"fini"},
+                {q:"Féminin de 'Beau'", a:"belle"}, {q:"Féminin de 'Heureux'", a:"heureuse"},
+                {q:"Antonyme de 'Grand'", a:"petit"}
+            ],
+            english: [
+                {q:"'Chat' en anglais", a:"cat"}, {q:"'Chien' en anglais", a:"dog"},
+                {q:"'Maison' en anglais", a:"house"}, {q:"'Voiture' en anglais", a:"car"},
+                {q:"'Livre' en anglais", a:"book"}, {q:"'Table' en anglais", a:"table"},
+                {q:"'Arbre' en anglais", a:"tree"}, {q:"'Fleur' en anglais", a:"flower"},
+                {q:"'Soleil' en anglais", a:"sun"}, {q:"'Lune' en anglais", a:"moon"},
+                {q:"'Eau' en anglais", a:"water"}, {q:"'Pain' en anglais", a:"bread"},
+                {q:"'Rose' en anglais", a:"pink"}, {q:"'Bleu' en anglais", a:"blue"},
+                {q:"'Rouge' en anglais", a:"red"}, {q:"'Vert' en anglais", a:"green"},
+                {q:"'Jaune' en anglais", a:"yellow"}, {q:"'Noir' en anglais", a:"black"},
+                {q:"'Blanc' en anglais", a:"white"}, {q:"'Un' en anglais", a:"one"},
+                {q:"'Deux' en anglais", a:"two"}, {q:"'Trois' en anglais", a:"three"},
+                {q:"'Bonjour' en anglais", a:"hello"}, {q:"'Merci' en anglais", a:"thankyou"},
+                {q:"'Ami' en anglais", a:"friend"}
+            ]
         };
 
-        // LE MOTEUR DU TYPE 10 (SIMPLE ET DIRECT)
+        // AUTHENTIFICATION (TON SYSTÈME QUI FONCTIONNE)
         async function auth(type) {
             const u = document.getElementById('username').value.trim();
             const p = document.getElementById('pass').value;
-            if(!u || p.length < 6) { alert("Pseudo et MDP (6 car.) requis"); return; }
+            if(!u || p.length < 6) { alert("⚠️ Pseudo et mot de passe (6 car.) requis !"); return; }
             
-            document.getElementById('msg').innerText = "⚡ Connexion Flash...";
             const email = u.toLowerCase() + "@candy.app";
 
             if(type === 'signup') {
                 const { data, error } = await client.auth.signUp({ email, password: p });
-                if(error) { alert(error.message); return; }
-                await client.from('profiles').insert([{ id: data.user.id, email: u, diamonds: 100, level: 1 }]);
-                alert("Compte créé ! Connecte-toi.");
+                if(error) { alert("❌ " + error.message); return; }
+                await client.from('profiles').insert([{ id: data.user.id, email: u, diamonds: 100, level: 1, streak: 0 }]);
+                alert("✨ Compte créé ! Connecte-toi maintenant.");
                 location.reload();
             } else {
                 const { data, error } = await client.auth.signInWithPassword({ email, password: p });
-                if(error) { alert("Pseudo ou MDP incorrect"); return; }
+                if(error) { alert("❌ Pseudo ou mot de passe incorrect"); return; }
                 
-                // On récupère le profil ou on le crée s'il manque
                 let { data: prof } = await client.from('profiles').select('*').eq('id', data.user.id).single();
                 if(!prof) {
-                    const { data: newProf } = await client.from('profiles').insert([{ id: data.user.id, email: u, diamonds: 100, level: 1 }]).select().single();
+                    const { data: newProf } = await client.from('profiles').insert([{ id: data.user.id, email: u, diamonds: 100, level: 1, streak: 0 }]).select().single();
                     prof = newProf;
                 }
                 profile = prof;
@@ -134,35 +533,4 @@
         function showDash() {
             document.getElementById('user-display').innerText = profile.email.toUpperCase();
             document.getElementById('val-dia').innerText = profile.diamonds;
-            document.getElementById('auth-screen').classList.remove('active');
-            document.getElementById('dashboard').classList.add('active');
-            updateCard();
-        }
-
-        function setCat(c) { currentCat = c; currentIdx = 0; updateCard(); }
-        function nav(d) { currentIdx = (currentIdx + d + 30) % 30; updateCard(); }
-        function updateCard() {
-            const emojis = { math: '🍩', french: '🍬', english: '🍦' };
-            document.getElementById('wish-emoji').innerText = emojis[currentCat];
-            document.getElementById('wish-title').innerText = `Vœu Magique #${currentIdx + 1}`;
-        }
-        function openEx() {
-            document.getElementById('ex-q').innerText = BANK[currentCat][currentIdx].q + " ?";
-            document.getElementById('ex-ans').value = "";
-            document.getElementById('modal').style.display = 'flex';
-        }
-        function closeEx() { document.getElementById('modal').style.display = 'none'; }
-
-        async function check() {
-            const ex = BANK[currentCat][currentIdx];
-            if(document.getElementById('ex-ans').value.trim().toLowerCase() === ex.a.toLowerCase()) {
-                confetti();
-                profile.diamonds += 10;
-                document.getElementById('val-dia').innerText = profile.diamonds;
-                client.from('profiles').update({ diamonds: profile.diamonds }).eq('id', profile.id).then();
-                closeEx(); nav(1);
-            } else { alert("Faux ! Réessaie 🍬"); }
-        }
-    </script>
-</body>
-</html>
+            document.getElementById('val-
