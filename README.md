@@ -1,1 +1,168 @@
-# test-
+# test-<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🍭 Candy Dream Academy ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Bubblegum+Sans&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        /* TON DESIGN PRÉFÉRÉ (NE PAS TOUCHER) */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { font-family: 'Fredoka', sans-serif; background: linear-gradient(-45deg, #FFE5F1, #E0BBE4, #C1F7DC, #A5E7FF); background-size: 400% 400%; animation: gradientBG 15s ease infinite; min-height: 100vh; display: flex; justify-content: center; overflow: hidden; }
+        @keyframes gradientBG { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+        .bubble { position: fixed; border-radius: 50%; background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,179,217,0.2)); box-shadow: 0 10px 30px rgba(0,0,0,0.05); animation: float 8s ease-in-out infinite; z-index: 1; pointer-events: none; }
+        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-40px); } }
+        .container { width: 100%; max-width: 450px; padding: 20px; z-index: 10; position: relative; }
+        .glass { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border: 2px solid rgba(255, 255, 255, 0.7); border-radius: 50px; box-shadow: 0 20px 60px rgba(0,0,0,0.1); position: relative; overflow: hidden; }
+        .glass::after { content: ''; position: absolute; top: -150%; left: -150%; width: 300%; height: 300%; background: linear-gradient(45deg, transparent, rgba(255,255,255,0.4), transparent); transform: rotate(45deg); animation: shine 6s infinite; pointer-events: none; }
+        @keyframes shine { 0% { left: -150%; } 100% { left: 150%; } }
+        .screen { display: none; flex-direction: column; animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .active { display: flex !important; }
+        @keyframes popIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .logo { font-family: 'Bubblegum Sans', cursive; font-size: 3.2rem; text-align: center; background: linear-gradient(45deg, #FF6B9D, #C8A2E8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin: 20px 0; }
+        input { width: 100%; padding: 20px; border-radius: 30px; border: 3px solid #C1F7DC; background: white; text-align: center; font-family: 'Fredoka'; font-size: 1.1rem; margin: 10px 0; outline: none; }
+        .btn-premium { background: linear-gradient(135deg, #FF6B9D, #FFB347); color: white; border: none; padding: 20px; border-radius: 30px; font-weight: 700; font-size: 1.2rem; cursor: pointer; width: 100%; box-shadow: 0 10px 25px rgba(255, 107, 157, 0.4); margin-top: 10px; }
+        .btn-secondary { background: white; color: #FF6B9D; border: 2px solid #FF6B9D; margin-top: 15px; }
+        .stat-badge { background: white; padding: 10px 15px; border-radius: 20px; font-weight: 700; font-size: 0.85rem; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
+        .avatar-cupcake { width: 85px; height: 85px; background: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 3.5rem; box-shadow: 0 10px 20px rgba(0,0,0,0.1); animation: bounce 3s infinite ease-in-out; }
+        @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
+        .nav-arrow { width: 65px; height: 65px; border-radius: 50%; border: none; background: white; font-size: 1.8rem; cursor: pointer; box-shadow: 0 8px 20px rgba(0,0,0,0.1); }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(224, 187, 228, 0.6); backdrop-filter: blur(10px); z-index: 1000; display: none; align-items: center; justify-content: center; padding: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="bubble" style="width:120px; height:120px; left:10%; top:20%;"></div>
+    <div class="bubble" style="width:150px; height:150px; left:60%; bottom:10%;"></div>
+
+    <div class="container">
+        <div id="auth-screen" class="screen active">
+            <div class="glass" style="padding: 40px 30px; text-align: center;">
+                <h1 class="logo">Candy Academy</h1>
+                <p id="msg" style="color:#888; margin-bottom:15px;">Moteur de Type 10 Activé 🚀</p>
+                <input type="text" id="username" placeholder="Ton Pseudo">
+                <input type="password" id="pass" placeholder="Mot de passe">
+                <button class="btn-premium" onclick="auth('login')">SE CONNECTER 🍬</button>
+                <button class="btn-premium btn-secondary" onclick="auth('signup')">CRÉER COMPTE ✨</button>
+            </div>
+        </div>
+
+        <div id="dashboard" class="screen">
+            <div class="glass" style="padding: 25px; margin-bottom: 20px; display: flex; align-items: center; gap: 20px;">
+                <div class="avatar-cupcake">🧁</div>
+                <div style="flex:1">
+                    <div id="user-display" style="font-weight:700; color:#FF6B9D; font-size:1.4rem;">JOUEUR</div>
+                    <div style="display:flex; gap:10px; margin-top:8px;">
+                        <span class="stat-badge">💎 <span id="val-dia">0</span></span>
+                        <span class="stat-badge">⭐ <span id="val-niv">1</span></span>
+                    </div>
+                </div>
+            </div>
+
+            <div style="display:flex; gap:10px; margin-bottom:20px;">
+                <button class="stat-badge" style="flex:1; border:none; cursor:pointer;" onclick="setCat('math')">🍩 Maths</button>
+                <button class="stat-badge" style="flex:1; border:none; cursor:pointer;" onclick="setCat('french')">🍬 Français</button>
+                <button class="stat-badge" style="flex:1; border:none; cursor:pointer;" onclick="setCat('english')">🍦 English</button>
+            </div>
+
+            <div class="glass" style="padding:50px; text-align:center; cursor:pointer;" onclick="openEx()">
+                <div id="wish-emoji" style="font-size:5rem; margin-bottom:20px;">🍩</div>
+                <h2 id="wish-title" style="color:#FF6B9D;">Vœu Magique #1</h2>
+                <div style="margin-top:20px; background:#4ECDC4; color:white; padding:12px; border-radius:20px; font-weight:700;">Gagne 10 Diamants 💎</div>
+            </div>
+
+            <div style="display:flex; justify-content:center; gap:30px; margin-top:30px;">
+                <button class="nav-arrow" onclick="nav(-1)">👈</button>
+                <button class="nav-arrow" onclick="nav(1)">👉</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="modal" class="modal-overlay">
+        <div class="glass" style="padding:50px 30px; width:100%; max-width:400px; text-align:center;">
+            <p id="ex-q" style="font-size:2rem; font-weight:700; color:#8B7AB8; margin-bottom:30px;"></p>
+            <input type="text" id="ex-ans" placeholder="Ta réponse...">
+            <button class="btn-premium" onclick="check()">Lancer le sort ! 🪄</button>
+            <p onclick="closeEx()" style="margin-top:20px; color:#ccc; cursor:pointer;">Annuler</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script>
+        const S_URL = 'https://lcbwehiwjowgthazrydy.supabase.co';
+        const S_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxjYndlaGl3am93Z3RoYXpyeWR5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjkzNTg4NjIsImV4cCI6MjA4NDkzNDg2Mn0.2nP42Uh262Jt-1stolzSVM8_EEzrAdCutKgd7B2MurY';
+        const client = window.supabase.createClient(S_URL, S_KEY);
+
+        let profile = null, currentCat = 'math', currentIdx = 0;
+        const BANK = { 
+            math: Array.from({length:30}, (_,i)=>({q:`${i+12} x 5`, a:( (i+12)*5 ).toString()})),
+            french: Array.from({length:30}, ()=>({q:"Pluriel de 'Hibou'", a:"hiboux"})),
+            english: Array.from({length:30}, ()=>({q:"Livre en anglais", a:"book"}))
+        };
+
+        // LE MOTEUR DU TYPE 10 (SIMPLE ET DIRECT)
+        async function auth(type) {
+            const u = document.getElementById('username').value.trim();
+            const p = document.getElementById('pass').value;
+            if(!u || p.length < 6) { alert("Pseudo et MDP (6 car.) requis"); return; }
+            
+            document.getElementById('msg').innerText = "⚡ Connexion Flash...";
+            const email = u.toLowerCase() + "@candy.app";
+
+            if(type === 'signup') {
+                const { data, error } = await client.auth.signUp({ email, password: p });
+                if(error) { alert(error.message); return; }
+                await client.from('profiles').insert([{ id: data.user.id, email: u, diamonds: 100, level: 1 }]);
+                alert("Compte créé ! Connecte-toi.");
+                location.reload();
+            } else {
+                const { data, error } = await client.auth.signInWithPassword({ email, password: p });
+                if(error) { alert("Pseudo ou MDP incorrect"); return; }
+                
+                // On récupère le profil ou on le crée s'il manque
+                let { data: prof } = await client.from('profiles').select('*').eq('id', data.user.id).single();
+                if(!prof) {
+                    const { data: newProf } = await client.from('profiles').insert([{ id: data.user.id, email: u, diamonds: 100, level: 1 }]).select().single();
+                    prof = newProf;
+                }
+                profile = prof;
+                showDash();
+            }
+        }
+
+        function showDash() {
+            document.getElementById('user-display').innerText = profile.email.toUpperCase();
+            document.getElementById('val-dia').innerText = profile.diamonds;
+            document.getElementById('auth-screen').classList.remove('active');
+            document.getElementById('dashboard').classList.add('active');
+            updateCard();
+        }
+
+        function setCat(c) { currentCat = c; currentIdx = 0; updateCard(); }
+        function nav(d) { currentIdx = (currentIdx + d + 30) % 30; updateCard(); }
+        function updateCard() {
+            const emojis = { math: '🍩', french: '🍬', english: '🍦' };
+            document.getElementById('wish-emoji').innerText = emojis[currentCat];
+            document.getElementById('wish-title').innerText = `Vœu Magique #${currentIdx + 1}`;
+        }
+        function openEx() {
+            document.getElementById('ex-q').innerText = BANK[currentCat][currentIdx].q + " ?";
+            document.getElementById('ex-ans').value = "";
+            document.getElementById('modal').style.display = 'flex';
+        }
+        function closeEx() { document.getElementById('modal').style.display = 'none'; }
+
+        async function check() {
+            const ex = BANK[currentCat][currentIdx];
+            if(document.getElementById('ex-ans').value.trim().toLowerCase() === ex.a.toLowerCase()) {
+                confetti();
+                profile.diamonds += 10;
+                document.getElementById('val-dia').innerText = profile.diamonds;
+                client.from('profiles').update({ diamonds: profile.diamonds }).eq('id', profile.id).then();
+                closeEx(); nav(1);
+            } else { alert("Faux ! Réessaie 🍬"); }
+        }
+    </script>
+</body>
+</html>
